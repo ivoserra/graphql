@@ -1,26 +1,15 @@
 
-const user = () => {
-  return {
-    id: '0',
-    userName:'Manu Doe',
-  }
+// this function receives the argumenst(parent, argumnent, context, info)
+const users = async (_, __,{ getUsers }, info) => {
+  const users = await getUsers();
+  return users.json();
 }
 
-const users = () => {
-  return [
-    {
-    id: '1',
-    userName:'John Doe',
-  },
-  {
-    id:'2',
-    userName:'Ivo Doe',
-  },
-  {
-    id:'3',
-    userName:'Manuel Doe',
-  },
-]
+
+const user = async(_, {id}, {getUsers}) => {
+  const response = await getUsers('/'+id);
+  const user = await response.json();
+  return user;
 }
 
 
