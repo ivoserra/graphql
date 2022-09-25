@@ -4,8 +4,8 @@ import { gql } from 'apollo-server';
 // there can only be one type query (schema) in this case we need to use extend
 export const userTypeDefs = gql`
    extend type Query {
-    user(id:ID!): User!
-    users:[User!]!
+    user(id:ID!, teste: Boolean): User!
+    users(input: ApiFiltersInput):[User!]!
     }
 
     type User{

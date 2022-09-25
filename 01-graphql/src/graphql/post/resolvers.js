@@ -1,21 +1,21 @@
 
-const post = () => { 
-  return { id: 1, title: 'My first post'} 
+// top level | root | parent  resolver are the entry points of each query, mutation and subscription
+
+const post = async(_, {id}, {getPosts}) => {
+  const response = await getPosts('/' + id);
+  const post = await response.json()
+  return post; 
 };
 
 
-const posts = () => { 
-  return [
-  {id: 1, title: 'My first post'},
-   {id: 2, title: 'My second post'}
-  ] 
+const posts = async (_, { input },{getPosts}) => { 
+  const apiFiltersInput = new URLSearchParams(input);;
+  const response = await getPosts('?' + apiFiltersInput);
+  return response.json();
   };
 
 
 export const postResolvers = {
-  Query: {
-    post,
-    posts,
-  },
-  };
-
+  Query: { post, posts },
+  
+};

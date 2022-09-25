@@ -1,7 +1,7 @@
-query GET_USER{
-  user{
+query GET_USER {
+  user {
     id
-    username
+    userName
   }
 }
 
@@ -11,4 +11,3 @@ query GET_USERS {
     userName
   }
 }
-
